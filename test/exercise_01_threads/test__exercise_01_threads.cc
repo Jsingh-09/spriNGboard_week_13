@@ -20,7 +20,7 @@ TEST_CASE("letters example", "")
   std::thread t_3(print_letter, 'c', 100);
   // LINE A
   t_1.join();
-  t_2.join();
+  //t_2.join();
   t_3.join();
   cout << endl << "this will print after all letters" << endl;
 }
