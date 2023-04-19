@@ -5,13 +5,18 @@
 
 #include <catch2/catch_test_macros.hpp>
 
+std::mutex increment_counter_mutex; 
+
 using namespace std;
 
 void increment_counter (size_t & counter, std::mutex & counter_mutex, size_t num_times)
 {
   for (size_t idx=0; idx<num_times; ++idx) {
     this_thread::sleep_for(1ms); // simluate a complicated calculation
-    counter++;
+    {
+      lock_guard lock(increment_counter_mutex);
+      counter++;
+    }
   }
 }
 
